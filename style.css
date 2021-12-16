@@ -1,0 +1,51 @@
+body {
+    background-color: #9bba5a;
+    position: relative;
+}
+
+.game-board {
+    margin: 0 auto;
+    display: grid;
+    width: 500px;
+    height: 500px;
+    grid-template-columns: repeat(25,20px);
+    grid-template-rows: repeat(25,20px);
+    outline: 4px solid rgba(0,0,0,.75);
+    box-shadow: inset 0 0 60px rgb(48 80 0 / 30%);
+    background-color: #ac6;
+}
+
+.alert {
+    grid-row-start: 1;
+    grid-column-start: 1;
+    width: 500px;
+    height: 500px;
+    background-color: #0000006e;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    color: #fff;
+}
+
+.snake {
+    background-color: #6e8640;
+    width: 20px;
+    height: 20px;
+    border-radius: 8px;
+}
+
+.food {
+    background-color: #c42323;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    grid-row-start: 10;
+}
+
+.snake--head {
+    background-color: #0051ff;
+    width: 20px;
+    height: 20px;
+    border-radius: 8px;
+}
