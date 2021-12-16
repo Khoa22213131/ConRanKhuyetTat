@@ -2,6 +2,7 @@ const $ = document.querySelector.bind(document)
 const $$ = document.querySelectorAll.bind(document)
 
 var board = $('.game-board')
+var scoreBoard = $('.score-board')
 var gameRows = 25
 var SPEED = 10;
 var gameOver = false
@@ -129,6 +130,7 @@ function createFood() {
     board.appendChild(food)  
     if(eatFood()) {
         score +=1
+        scoreBoard.innerHTML = `<span>SCORE : </span><span class="score">${score}</span>`
         getFoodPosition()
         longer()
     }  
