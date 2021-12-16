@@ -28,54 +28,6 @@ var score = 0
 var snakeMove = {x:0,y:0} 
 var isMoveUp = false, isMoveDown = false, isMoveLeft = false, isMoveRight = false
 
-window.addEventListener('keydown', function(e) {
-    switch(e.key) {
-        case('ArrowDown'): {
-            if(!isMoveUp) {
-                snakeMove = movement.down
-                isMoveUp = false 
-                isMoveDown = true 
-                isMoveLeft = false 
-                isMoveRight = false
-            }
-            break
-        } 
-        case('ArrowUp'): {
-            if(!isMoveDown) {
-                snakeMove = movement.up
-                isMoveUp = true 
-                isMoveDown = false 
-                isMoveLeft = false 
-                isMoveRight = false
-            }break
-        } 
-        case('ArrowLeft'): {
-            if(!isMoveRight) {
-                snakeMove = movement.left
-                isMoveUp = false 
-                isMoveDown = false 
-                isMoveLeft = true 
-                isMoveRight = false
-            } break
-        } 
-        case('ArrowRight'): {
-            if(!isMoveLeft) {
-                snakeMove = movement.right
-                isMoveUp = false 
-                isMoveDown = false 
-                isMoveLeft = false 
-                isMoveRight = true
-            } break
-        }
-        case('Enter'): {
-            if(gameOver) {
-                gameOver = false
-                this.window.location.reload()
-            }
-        } 
-    }    
-})
-
 function move1() {
     for (let i = snakeBody.length - 2; i >= 0; i--) {
         snakeBody[i+1] = { ...snakeBody[i] }
@@ -197,6 +149,54 @@ function gamePlay(curr) {
     window.requestAnimationFrame(gamePlay)
     var seconds = (curr - last) / 1000
     if(seconds < 1/SPEED) return 
+
+    window.addEventListener('keydown', function(e) {
+        switch(e.key) {
+            case('ArrowDown'): {
+                if(!isMoveUp) {
+                    snakeMove = movement.down
+                    isMoveUp = false 
+                    isMoveDown = true 
+                    isMoveLeft = false 
+                    isMoveRight = false
+                }
+                break
+            } 
+            case('ArrowUp'): {
+                if(!isMoveDown) {
+                    snakeMove = movement.up
+                    isMoveUp = true 
+                    isMoveDown = false 
+                    isMoveLeft = false 
+                    isMoveRight = false
+                }break
+            } 
+            case('ArrowLeft'): {
+                if(!isMoveRight) {
+                    snakeMove = movement.left
+                    isMoveUp = false 
+                    isMoveDown = false 
+                    isMoveLeft = true 
+                    isMoveRight = false
+                } break
+            } 
+            case('ArrowRight'): {
+                if(!isMoveLeft) {
+                    snakeMove = movement.right
+                    isMoveUp = false 
+                    isMoveDown = false 
+                    isMoveLeft = false 
+                    isMoveRight = true
+                } break
+            }
+            case('Enter'): {
+                if(gameOver) {
+                    gameOver = false
+                    this.window.location.reload()
+                }
+            } 
+        }    
+    })
 
     last = curr
     draw()
