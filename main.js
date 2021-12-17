@@ -59,11 +59,15 @@ var highscore;
 // highscore
 const HIGHSCORE_STORAGE = "HIGHSCORE"
 
-// if(JSON.parse(localStorage.getItem(HIGHSCORE_STORAGE))) {
-//     console.log('bruh')
-// }
+var highscore;
 
-var highscore = JSON.parse(localStorage.getItem(HIGHSCORE_STORAGE)) 
+if(highscore == 0) {
+    localStorage.setItem(HIGHSCORE_STORAGE,0)
+}
+
+highscore = JSON.parse(localStorage.getItem(HIGHSCORE_STORAGE)) || 0
+
+
 function saveHighscore(score) {
     highscore = score
     localStorage.setItem(HIGHSCORE_STORAGE,JSON.stringify(highscore))
