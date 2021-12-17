@@ -6,6 +6,37 @@ var scoreBoard = $('.score-board')
 var gameRows = 25
 var SPEED = 10;
 var gameOver = false
+var foodColorList = [
+    {
+        background: "#ffff00",
+        boxShadow:"0 0 25px #ffff00"
+    },
+    {
+        background: "#76ff03",
+        boxShadow:"0 0 25px #76ff03"
+    },
+    {
+        background: "#f06292",
+        boxShadow:"0 0 25px #f06292"
+    },
+    {
+        background: "#4fc3f7",
+        boxShadow:"0 0 25px #4fc3f7"
+    },
+    {
+        background: "#ba68c8",
+        boxShadow:"0 0 25px #f57c00"
+    },
+    {
+        background: "#673ab7",
+        boxShadow:"0 0 25px #673ab7"
+    },
+
+]
+var foodColor = {
+    background: "#673ab7",
+    boxShadow:"0 0 25px #673ab7"
+}
 var snakeBody = [
     {x:12,y:12},
 ]
@@ -63,9 +94,14 @@ function draw1(board) {
 
 function randomFood() {
     return {
-        x: Math.floor(Math.random() * gameRows + 0),
-        y: Math.floor(Math.random() * gameRows + 0),
+        x: Math.floor(Math.random() * (gameRows) + 1),
+        y: Math.floor(Math.random() * (gameRows) + 1),
     }
+}
+
+function randomColor() {
+    var index = Math.floor(Math.random() * 6 + 0)
+    return foodColorList[index]
 }
 
 function eatFood() {
@@ -78,16 +114,23 @@ function createFood() {
     const food = document.createElement('div')
     food.classList.add('food') 
     food.style.gridRowStart = foodPosition.y
-    food.style.gridColumnStart = foodPosition.x  
+    food.style.gridColumnStart = foodPosition.x
+    food.style.background = foodColor.background
+    food.style.boxShadow = foodColor.boxShadow  
     board.appendChild(food)  
     if(eatFood()) {
         score +=1
         scoreBoard.innerHTML = `<span>SCORE : </span><span class="score">${score}</span>`
         getFoodPosition()
+        getFoodColor()
         longer()
     }  
 }
 
+function getFoodColor() {
+    foodColor = randomColor()
+}
+getFoodColor()
 
 function getFoodPosition() {
     var posi = randomFood()
