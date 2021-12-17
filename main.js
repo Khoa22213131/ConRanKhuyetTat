@@ -148,6 +148,9 @@ function createFood() {
         getFoodPosition()
         getFoodColor()
         longer()
+        if(score %2 == 0) {
+            SPEED *= 1.05
+        }
     }  
 }
 
@@ -190,6 +193,7 @@ function checkGameOver(board) {
         alert.classList.add('alert')
         alert.innerText = 'press "ENTER" to restart'
         board.appendChild(alert)
+        SPEED = 10
     }
 }
 
