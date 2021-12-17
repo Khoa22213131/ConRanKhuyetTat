@@ -7,6 +7,9 @@ var highscoreBoard = $('.highscore-board')
 var gameRows = 25
 var SPEED = 10;
 var gameOver = false
+var audioEat = new Audio('/audio/eatFood.wav')
+var audioLoose = new Audio('/audio/loose.wav')
+
 var foodColorList = [
     {
         background: "#ffff00",
@@ -139,6 +142,7 @@ function createFood() {
     food.style.boxShadow = foodColor.boxShadow  
     board.appendChild(food)  
     if(eatFood()) {
+        audioEat.play()
         score +=1
         scoreBoard.innerHTML = `<span>SCORE : </span><span class="score">${score}</span>`
         getFoodPosition()
@@ -179,6 +183,7 @@ function checkGameOver(board) {
         if(highscore < score) {
             saveHighscore(score)
         }
+        audioLoose.play()
         highscoreBoard.innerHTML = `<span>HIGHSCORE:</span><span class="highscore">${localStorage.getItem(HIGHSCORE_STORAGE)}</span>`
         gameOver = true
         const alert = document.createElement('div')
@@ -209,7 +214,6 @@ function draw() {
 
 function move() {
     move1()
-    eatFood()
     checkGameOver(board)
 }
 
