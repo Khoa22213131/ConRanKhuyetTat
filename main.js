@@ -7,7 +7,6 @@ var highscoreBoard = $('.highscore-board')
 var gameRows = 25
 var SPEED = 10;
 var gameOver = false
-var round = 1
 var foodColorList = [
     {
         background: "#ffff00",
