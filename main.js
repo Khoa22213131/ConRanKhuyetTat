@@ -90,7 +90,12 @@ function createFood() {
 
 
 function getFoodPosition() {
-    foodPosition = randomFood()
+    var posi = randomFood()
+    if(intersection(posi,snakeBody)) {
+        return getFoodPosition()
+    } else {
+        foodPosition = posi
+    }
 }
 getFoodPosition()
 
@@ -107,7 +112,7 @@ function wallCrash() {
 }
 
 function checkGameOver(board) {
-    if(wallCrash() || intersection()) {
+    if(wallCrash() || intersection(snakeBody[0],snakeBody)) {
         gameOver = true
         const alert = document.createElement('div')
         alert.classList.add('alert')
@@ -116,8 +121,7 @@ function checkGameOver(board) {
     }
 }
 
-function intersection() {
-    var caiDau = snakeBody[0]
+function intersection(caiDau,snakeBody) {
     var check = snakeBody.some(function(element,index) {
         if(index != 0) {
             return element.x === caiDau.x && element.y === caiDau.y
