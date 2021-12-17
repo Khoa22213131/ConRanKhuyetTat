@@ -3,9 +3,11 @@ const $$ = document.querySelectorAll.bind(document)
 
 var board = $('.game-board')
 var scoreBoard = $('.score-board')
+var highscoreBoard = $('.highscore-board')
 var gameRows = 25
 var SPEED = 10;
 var gameOver = false
+var round = 1
 var foodColorList = [
     {
         background: "#ffff00",
@@ -53,6 +55,21 @@ var movement = {
     right: {x:1,y:0},
 }
 var score = 0
+var highscore;
+// highscore
+const HIGHSCORE_STORAGE = "HIGHSCORE"
+
+// if(JSON.parse(localStorage.getItem(HIGHSCORE_STORAGE))) {
+//     console.log('bruh')
+// }
+
+var highscore = JSON.parse(localStorage.getItem(HIGHSCORE_STORAGE)) 
+function saveHighscore(score) {
+    highscore = score
+    localStorage.setItem(HIGHSCORE_STORAGE,JSON.stringify(highscore))
+}
+
+highscoreBoard.innerHTML = `<span>HIGHSCORE:</span><span class="highscore">${localStorage.getItem(HIGHSCORE_STORAGE)}</span>`
 
 // controller
 
@@ -156,6 +173,10 @@ function wallCrash() {
 
 function checkGameOver(board) {
     if(wallCrash() || intersection(snakeBody[0],snakeBody)) {
+        if(highscore < score) {
+            saveHighscore(score)
+        }
+        highscoreBoard.innerHTML = `<span>HIGHSCORE:</span><span class="highscore">${localStorage.getItem(HIGHSCORE_STORAGE)}</span>`
         gameOver = true
         const alert = document.createElement('div')
         alert.classList.add('alert')

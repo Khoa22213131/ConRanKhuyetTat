@@ -55,10 +55,15 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    font-size: 60px;
+    font-size: 50px;
     color: #fff;
 }
-
-.highscore {
+.highscore-board {
     flex: 1;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    align-items: center;
+    font-size: 50px;
+    color: #fff;
 }
